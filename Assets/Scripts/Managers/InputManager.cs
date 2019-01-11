@@ -2,12 +2,8 @@
 
 public class InputManager : MonoBehaviour 
 {
-	// Use this for initialization
-	void Start() 
-	{
-		
-	}
-	
+    private static InputManager m_instance = null;
+
 	// Update is called once per frame
 	void Update() 
 	{
