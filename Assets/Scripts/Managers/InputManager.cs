@@ -88,4 +88,12 @@ public class InputManager : Manager
             return m_quit;
         }
     }
+
+    public static InputManager Instance
+    {
+        get
+        {
+            return m_instance;
+        }
+    }
 }

@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class CameraManager : Manager 
 {
-    private static CameraManager instance = null;
+    private static CameraManager m_instance = null;
     [SerializeField]
     private Camera[] m_cameras = null;
     private Camera m_activeCamera = null;
@@ -56,11 +56,11 @@ public class CameraManager : Manager
 
     protected override void InitialiseManager()
     {
-        if (instance == null)
+        if (m_instance == null)
         {
-            instance = this;
+            m_instance = this;
         }
-        else if (instance != this)
+        else if (m_instance != this)
         {
             Destroy(gameObject);
         }
@@ -76,11 +76,15 @@ public class CameraManager : Manager
             {
                 if (_next)
                 {
-                    if ((i + 1) <= m_cameras.Length)
+                    if ((i + 1) < m_cameras.Length)
                     {
                         m_activeCamera = m_cameras[i + 1];
 
                         Debug.Log("Switched to Camera: " + m_activeCamera.name);
+                    }
+                    else
+                    {
+                        Debug.Log("No next camera" + m_activeCamera.name);
                     }
                 }
                 else
@@ -90,14 +94,28 @@ public class CameraManager : Manager
                         m_activeCamera = m_cameras[i - 1];
                         Debug.Log("Switched to Camera: " + m_activeCamera.name);
                     }
+                    else
+                    {
+                        Debug.Log("No previous camera" + m_activeCamera.name);
+                    }
                 }
             }
         }
+
+        foreach (Camera element in m_cameras)
+        {
+            if (element != m_activeCamera)
+            {
+                element.enabled = false;
+            }
+        }
+
+        m_activeCamera.enabled = true;
     }
 
     protected override void OnSceneLoad(Scene _scene, LoadSceneMode _mode)
     {
-        throw new System.NotImplementedException();
+        SetReferences();
     }
 
     protected override void SetReferences()
@@ -113,5 +131,13 @@ public class CameraManager : Manager
     public void PreviousCamera()
     {
         SetActiveCamera(false);
+    }
+
+    public static CameraManager Instance
+    {
+        get
+        {
+            return m_instance;
+        }
     }
 }

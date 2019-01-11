@@ -2,15 +2,13 @@
 
 public class CameraButtons : MonoBehaviour 
 {
-	// Use this for initialization
-	void Start() 
-	{
-		
-	}
-	
-	// Update is called once per frame
-	void Update() 
-	{
-		
-	}
+	public void NextCamera()
+    {
+        CameraManager.Instance.NextCamera();
+    }
+
+    public void PreviousCamera()
+    {
+        CameraManager.Instance.PreviousCamera();
+    }
 }
