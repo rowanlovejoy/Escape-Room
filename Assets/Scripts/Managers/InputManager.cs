@@ -33,6 +33,8 @@ public class InputManager : Manager
         {
             Destroy(gameObject);
         }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     protected override void OnSceneLoad(Scene _scene, LoadSceneMode _mode)
