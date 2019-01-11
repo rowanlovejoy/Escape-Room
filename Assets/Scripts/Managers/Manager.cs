@@ -1,16 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Manager : MonoBehaviour 
+public abstract class Manager : MonoBehaviour 
 {
-	// Use this for initialization
-	void Start() 
-	{
-		
-	}
-	
-	// Update is called once per frame
-	void Update() 
-	{
-		
-	}
+    protected const string NO_REFERENCES_MESSAGES = "No References";
+
+    protected abstract void OnSceneLoad(Scene _scene, LoadSceneMode _mode);
+
+    protected abstract void InitialiseManager();
+
+    protected abstract void SetReferences();
 }
