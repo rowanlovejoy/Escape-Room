@@ -2,13 +2,8 @@
 
 public class CameraButtons : MonoBehaviour 
 {
-	public void NextCamera()
+	public void SwitchCamera(int _targetCamera)
     {
-        CameraManager.Instance.NextCamera();
-    }
-
-    public void PreviousCamera()
-    {
-        CameraManager.Instance.PreviousCamera();
+        CameraManager.Instance.SetActiveCamera(_targetCamera);
     }
 }
